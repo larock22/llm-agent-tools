@@ -1,0 +1,36 @@
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# API keys and secrets
+*.key
+secrets/
+config.json
+
+# Claude files
+.claude/
+
+# Researcher tool config and history
+.config/researcher/
+
+# Memory bank and scratchpad files (optional - uncomment if you want to keep these private)
+# memory_bank/
+# *.scratchpad.md
+
+# Architecture exports (optional - uncomment if these get large or contain sensitive info)
+# architecture_export_*.md
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log 

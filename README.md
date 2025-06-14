@@ -70,8 +70,11 @@ Archived files are timestamped and stored in `memory_bank/done_task/`.
 ## Quick Start
 
 ```bash
-# Download all tools and prompt in one command
-wget -q https://raw.githubusercontent.com/larock22/llm-agent-tools/main/{scratchpad.sh,architect.sh,researcher.sh,agent_tools_prompt.xml} && chmod +x *.sh
+# Set up in a new directory
+printf 'Setup: creating llm-tooling/ and downloading tools...\n'
+mkdir -p llm-tooling && cd llm-tooling
+wget -q https://raw.githubusercontent.com/larock22/llm-agent-tools/main/{scratchpad.sh,architect.sh,researcher.sh,agent_tools_prompt.xml}
+chmod +x *.sh
 
 # For researcher.sh, set your OpenRouter API key
 export OPENROUTER_API_KEY="sk-or-v1-your-key-here"
@@ -87,8 +90,10 @@ export OPENROUTER_API_KEY="sk-or-v1-your-key-here"
 
 ### Option 1: wget (Recommended)
 ```bash
-# Download all files at once
-wget -q https://raw.githubusercontent.com/larock22/llm-agent-tools/main/{scratchpad.sh,architect.sh,researcher.sh,agent_tools_prompt.xml} && chmod +x *.sh
+# Download all files into llm-tooling directory
+mkdir -p llm-tooling && cd llm-tooling
+wget -q https://raw.githubusercontent.com/larock22/llm-agent-tools/main/{scratchpad.sh,architect.sh,researcher.sh,agent_tools_prompt.xml}
+chmod +x *.sh
 ```
 
 ### Option 2: Clone Repository

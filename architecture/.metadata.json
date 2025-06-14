@@ -1,0 +1,13 @@
+{
+  "files": {
+    "scratchpad.sh": {
+      "description": "Structured note-taking for task tracking with revisions and branching"
+    },
+    "architect.sh": {
+      "description": "Architecture documentation management tool for LLM-friendly codebase understanding"
+    },
+    "README.md": {
+      "description": "Project documentation for internal tooling scripts"
+    }
+  }
+}

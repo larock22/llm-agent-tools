@@ -14,7 +14,7 @@
 # ──────────────────────────────────────────────────────────────
 set -euo pipefail
 
-SCRATCH="scratchpad.md"          # working file (always in repo root)
+SCRATCH="$BANK_DIR/scratchpad.md"  # working file (always in memory-bank)
 BANK_DIR="memory-bank"
 
 # ──────────────────────────────────────────────────────────────
@@ -56,6 +56,7 @@ case "$cmd" in
   start)
     [[ $# -ge 1 ]] || usage
     task="$*"
+    mkdir -p "$BANK_DIR"
     {
       echo "# $task"
       echo "_Started: $(date '+%Y-%m-%d %H:%M:%S')_"

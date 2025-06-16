@@ -65,7 +65,7 @@ Creates a structured markdown file with:
 - `[N.x]` – Branched alternatives under step N
 - `[N~x]` – Revisions to step N
 
-Archived files are timestamped and stored in `memory_bank/done_task/`.
+Archived files are timestamped and stored in `memory-bank/`.
 
 ## Quick Start
 

@@ -15,7 +15,7 @@
 set -euo pipefail
 
 SCRATCH="scratchpad.md"          # working file (always in repo root)
-BANK_DIR="memory_bank/done_task"
+BANK_DIR="memory-bank"
 
 # ──────────────────────────────────────────────────────────────
 usage() {

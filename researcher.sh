@@ -14,7 +14,7 @@
 # ──────────────────────────────────────────────────────────────
 set -euo pipefail
 
-CONFIG_DIR="$HOME/.config/researcher"
+CONFIG_DIR=".researcher"
 CONFIG_FILE="$CONFIG_DIR/config.json"
 HISTORY_FILE="$CONFIG_DIR/history.json"
 DEFAULT_MODEL="openai/gpt-4o:online"

@@ -25,8 +25,8 @@ if ! wget -q "$BASE_URL/scratchpad.sh" -O agent-tools/scratchpad.sh; then
     echo "❌ Failed to download scratchpad.sh"
     exit 1
 fi
-if ! wget -q "$BASE_URL/qa_task.sh" -O agent-tools/qa_task.sh; then
-    echo "❌ Failed to download qa_task.sh"
+if ! wget -q "$BASE_URL/check_workflow.sh" -O agent-tools/check_workflow.sh; then
+    echo "❌ Failed to download check_workflow.sh"
     exit 1
 fi
 if ! wget -q "$BASE_URL/bankctl.sh" -O agent-tools/bankctl.sh; then
@@ -177,7 +177,7 @@ echo "📁 Project structure:"
 echo "  agent-tools/"
 echo "  ├── wakeup.sh          # Read memory bank"
 echo "  ├── scratchpad.sh      # Task logging" 
-echo "  ├── qa_task.sh         # Quality assurance"
+echo "  ├── check_workflow.sh  # Simple verification"
 echo "  ├── bankctl.sh         # Memory bank control"
 echo "  └── WORKFLOW_GUIDE.md  # Complete workflow documentation"
 echo

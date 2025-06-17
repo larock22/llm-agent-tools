@@ -24,7 +24,7 @@ rm setup.sh
 - **agent-tools/** - Workflow scripts
   - `wakeup.sh` - Read project context
   - `scratchpad.sh` - Task logging system
-  - `qa_task.sh` - Quality assurance checks
+  - `check_workflow.sh` - Simple verification check
   - `bankctl.sh` - Memory bank management
 
 - **memory-bank/** - Project knowledge base
@@ -41,6 +41,7 @@ rm setup.sh
 3. **Log work**: `./scratchpad.sh step "What I did"`
 4. **Complete**: `./scratchpad.sh close "Task done"`
 5. **Update memory**: Edit `memory-bank/current_state_summary.md`
+6. **Verify** (optional): `./agent-tools/check_workflow.sh`
 
 ## For Existing Projects
 

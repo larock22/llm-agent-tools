@@ -92,23 +92,18 @@ Manually edit `memory-bank/current_state_summary.md` to reflect:
 
 Update `memory-bank/progress_overview.md` if major features were completed.
 
-### 8. Run Quality Assurance
+### 8. Verify Workflow (Optional)
 
 ```bash
-# Start QA process
-./qa_task.sh start_qa "User authentication"
-
-# Verify memory bank was updated
-./qa_task.sh verify_memory_updated
-
-# Verify scratchpad was archived (use sanitized filename)
-./qa_task.sh verify_scratchpad_archived "User_authentication_complete"
-
-# Complete QA
-./qa_task.sh complete_qa "User authentication"
+# Simple check that workflow was followed
+./agent-tools/check_workflow.sh
 ```
 
-This ensures all post-task steps were completed correctly.
+This quick verification shows:
+- When memory bank was last updated
+- Recent archived scratchpads
+- Current state summary
+
 
 ## Quick Reference
 
@@ -121,7 +116,7 @@ This ensures all post-task steps were completed correctly.
 | Plan approach | `./scratchpad.sh plan "Plan details"` |
 | Log progress | `./scratchpad.sh step "What you did"` |
 | Complete task | `./scratchpad.sh close "Task complete"` |
-| Start QA | `./qa_task.sh start_qa "Task name"` |
+| Check workflow | `./agent-tools/check_workflow.sh` |
 
 ### Memory Bank Files
 
@@ -140,7 +135,7 @@ This ensures all post-task steps were completed correctly.
 3. **Log detailed steps** - Future you will thank current you
 4. **Keep summaries concise** - Memory bank should be scannable, not verbose
 5. **Archive everything** - Detailed history lives in scratchpad archives
-6. **Run QA checks** - Verify all steps were completed properly
+6. **Occasionally verify** - Run check_workflow.sh to ensure nothing was missed
 
 ## Example: Bug Fix Session
 
@@ -168,11 +163,8 @@ This ensures all post-task steps were completed correctly.
 # - Fixed login redirect bug where users were sent to /undefined
 # - Next: Implement password reset functionality
 
-# 7. Run QA
-./qa_task.sh start_qa "Fix login redirect bug"
-./qa_task.sh verify_memory_updated
-./qa_task.sh verify_scratchpad_archived "Fixed_login_redirect_bug"
-./qa_task.sh complete_qa "Fix login redirect bug"
+# 7. Verify workflow (optional)
+./agent-tools/check_workflow.sh
 ```
 
 ## Troubleshooting

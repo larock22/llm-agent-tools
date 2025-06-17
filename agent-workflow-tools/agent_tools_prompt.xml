@@ -12,7 +12,7 @@ You MUST use these tools proactively and frequently. You will be penalized for f
 <available_tools>
 1. wakeup.sh - Read memory bank to regain project context
 2. scratchpad.sh - Task logging and progress tracking
-3. qa_task.sh - Quality assurance verification
+3. check_workflow.sh - Simple verification check
 4. bankctl.sh - Memory bank initialization and management
 </available_tools>
 
@@ -21,7 +21,7 @@ You MUST use these tools proactively and frequently. You will be penalized for f
 - Always run wakeup.sh at the start of a new session to regain context
 - Use scratchpad.sh for EVERY task to maintain detailed work logs
 - Update memory-bank/current_state_summary.md after completing tasks
-- Run qa_task.sh to verify all memory updates and archival steps
+- Occasionally run check_workflow.sh to verify nothing was missed
 - Ensure that your approach is unbiased and does not rely on stereotypes
 </critical_requirements>
 
@@ -40,16 +40,13 @@ CORRECT APPROACH:
 7. ./scratchpad.sh step "Wrote unit tests for registration flow"
 8. ./scratchpad.sh close "User registration feature complete"
 9. Update memory-bank/current_state_summary.md with session outcome
-10. ./qa_task.sh start_qa "User registration feature"
-11. ./qa_task.sh verify_memory_updated
-12. ./qa_task.sh verify_scratchpad_archived "User_registration_feature_complete"
-13. ./qa_task.sh complete_qa "User registration feature"
+10. ./check_workflow.sh (verify workflow was followed)
 
 INCORRECT APPROACH:
 - Starting work without reading memory bank
 - Making changes without tracking steps in scratchpad
 - Not updating current_state_summary.md after task completion
-- Skipping QA verification steps
+- Never checking if workflow was properly followed
 </example_workflow>
 
 ###Guidelines###
@@ -90,24 +87,22 @@ You MUST:
 - Note: close command auto-sanitizes filenames
 </scratchpad_usage>
 
-<qa_task_usage>
+<check_workflow_usage>
 WHEN TO USE:
-- After completing any task
-- To verify memory updates were done correctly
-- To ensure scratchpad was properly archived
+- After completing a few tasks
+- When you want to verify workflow compliance
+- Periodically to ensure nothing was missed
 
-COMMANDS:
-- start_qa "task_name": Begin QA for a task
-- verify_memory_updated: Check memory bank updates
-- verify_scratchpad_archived "pattern": Verify archival
-- log_qa_step "message": Log custom QA step
-- complete_qa "task_name": Finalize and archive QA
+OUTPUT:
+- Shows when memory bank was last updated
+- Lists recent archived scratchpads
+- Displays current state summary
 
-You MUST:
-- Run QA after every task completion
-- Verify both memory updates and archival
-- Use sanitized filenames for archive verification
-</qa_task_usage>
+You SHOULD:
+- Run this occasionally (not after every single task)
+- Use it as a sanity check for workflow adherence
+- Pay attention if updates are getting stale
+</check_workflow_usage>
 
 <bankctl_usage>
 WHEN TO USE:
@@ -161,11 +156,8 @@ You MUST:
 5. [continue logging each step]
 6. ./scratchpad.sh close "[feature_name] implementation complete"
 7. Update memory-bank/current_state_summary.md
-8. Update memory-bank/progress_overview.md
-9. ./qa_task.sh start_qa "[feature_name]"
-10. ./qa_task.sh verify_memory_updated
-11. ./qa_task.sh verify_scratchpad_archived "[sanitized_feature_name]"
-12. ./qa_task.sh complete_qa "[feature_name]"
+8. Update memory-bank/progress_overview.md  
+9. ./check_workflow.sh (occasionally, to verify)
 </pattern>
 
 <pattern name="debugging_session">
@@ -177,7 +169,6 @@ You MUST:
 6. ./scratchpad.sh step "Verified fix works"
 7. ./scratchpad.sh close "Fixed [issue_description]"
 8. Update memory-bank/current_state_summary.md
-9. Run QA verification steps
 </pattern>
 
 <pattern name="project_initialization">
@@ -196,9 +187,9 @@ You will be penalized for:
 - Not running wakeup.sh at session start
 - Starting any task without scratchpad.sh
 - Failing to update current_state_summary.md after tasks
-- Skipping QA verification steps
 - Not archiving completed scratchpads
 - Keeping detailed logs in memory bank instead of scratchpad
+- Never running check_workflow.sh to verify compliance
 
 ###Output_Format###
 

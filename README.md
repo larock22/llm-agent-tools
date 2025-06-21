@@ -7,13 +7,13 @@ Memory management and task tracking tools for AI agents working on software proj
 Add these tools to any existing project:
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/larock22/llm-agent-tools/main/agent-workflow-tools/install.sh | bash
+wget -qO- https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/main/agent-workflow-tools/install.sh | bash
 ```
 
 Or manually:
 
 ```bash
-wget https://raw.githubusercontent.com/larock22/llm-agent-tools/main/agent-workflow-tools/setup.sh
+wget https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/main/agent-workflow-tools/setup.sh
 chmod +x setup.sh
 ./setup.sh
 rm setup.sh

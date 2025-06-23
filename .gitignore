@@ -14,12 +14,30 @@ config.json
 # Researcher tool config and history
 .config/researcher/
 
-# Memory bank and scratchpad files (optional - uncomment if you want to keep these private)
-# memory_bank/
-# *.scratchpad.md
+# Memory Bank - Working Files
+# Track structure but not content
+memory-bank/agents/*/scratchpad.md
+memory-bank/agents/*/knowledge.json
+memory-bank/context/context.md
+memory-bank/locks/*.lock
+memory-bank/shared/knowledge_base.json
 
-# Architecture exports (optional - uncomment if these get large or contain sensitive info)
-# architecture_export_*.md
+# Keep directory structure
+!memory-bank/
+!memory-bank/*/
+!memory-bank/*/*/
+!memory-bank/README.md
+!memory-bank/agents/README.md
+!memory-bank/shared/README.md
+
+# Archive directories - you may want to track or ignore these
+# Uncomment to ignore archived content:
+# memory-bank/context_archive/
+# memory-bank/shared/done_tasks/
+# memory-bank/shared/handoffs/
+
+# Architecture exports
+architecture_export_*.md
 
 # System files
 .DS_Store

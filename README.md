@@ -1,210 +1,273 @@
 # LLM Agent Tools
 
-
-
-A comprehensive toolkit of bash scripts designed to enhance LLM agent capabilities for software development workflows. These tools provide structured task tracking, architecture documentation, and online research capabilities that work seamlessly together.
-
-
+A comprehensive toolkit of bash scripts designed to enhance LLM agent capabilities for software development workflows. Now with **multi-agent support** for collaborative work, knowledge sharing, and task coordination.
 
 ## Overview
 
-
-
 Modern LLM agents need better ways to:
 
-- **Track complex multi-step tasks** with branching decision trees
-
-- **Document and understand codebases** with persistent architectural knowledge
-
+- **Track complex multi-step tasks** with branching decision trees and agent handoffs
+- **Share knowledge and discoveries** between multiple specialized agents
+- **Document and understand codebases** with lightweight, actionable intelligence
 - **Research current information** using online-capable models
 
+This toolkit provides specialized bash scripts that work together seamlessly:
 
+1. **scratchpad-multi.sh** - Multi-agent task tracking with isolation and handoffs
+2. **knowledge.sh** - Private/shared knowledge bases for agent memory
+3. **codemap.sh** - Lightweight code intelligence (replaces architect.sh)
+4. **context.sh** - Context gathering for debugging
+5. **researcher.sh** - Online research via OpenRouter API
 
-This toolkit provides three specialized bash scripts that address these needs:
-
-
-
-1. **scratchpad.sh** - Dynamic task tracking with branching and revisions
-
-2. **architect.sh** - Architecture documentation and codebase mapping
-
-3. **researcher.sh** - Online research via OpenRouter API (web search + multimodal)
-
-
-
-All tools are designed to work together, creating a comprehensive workflow enhancement system for LLM agents.
+All tools store data within a clean `memory-bank/` directory structure.
 
 
 
 ## Key Features
 
-
-
-- **Zero dependencies** - Pure bash, works on any Linux/macOS system
-
+- **Multi-agent support** - Multiple agents can work concurrently with isolated workspaces
+- **Knowledge sharing** - Private and shared knowledge bases for collective intelligence
+- **Task coordination** - Hand off work between specialized agents
+- **Zero dependencies** - Pure bash (except jq for knowledge.sh/codemap.sh)
+- **Self-contained** - All data stored within `memory-bank/` directory
 - **LLM-optimized** - Designed specifically for AI agent workflows
-
-- **Research-backed** - Prompt design based on [ATLAS research principles](https://arxiv.org/html/2312.16171v1)
-
-- **Integrated workflow** - Tools work together seamlessly
-
-- **Persistent memory** - Archive completed tasks and maintain project documentation
-
-
-
----
-
-
-
-# Individual Tool Documentation
-
-
-
-## Scratchpad.sh
-
-
-
-A lightweight Bash script for structured note-taking and task tracking with an LLM-friendly workflow. Features dynamic numbering, revisions, and branching capabilities.
-
-
-
-## Commands
-
-
-
-- `start <task-title>` – Create new scratchpad with task header
-
-- `step <text>|-` – Add next numbered step (auto-increments)
-
-- `revise <N> <text>|-` – Add revision to step N (marked as [N~1], [N~2], etc.)
-
-- `branch <N> <text>|-` – Create sub-step under step N (marked as [N.1], [N.2], etc.)
-
-- `append <text>|-` – Raw text append without formatting
-
-- `status` – Show current progress and step counts
-
-- `finish [task-title]` – Archive completed scratchpad with timestamp
-
-
-
-All text commands support stdin input with `-`.
-
-
-
-## Usage Example
-
-
-
-```bash
-
-./scratchpad.sh start "Design authentication system"
-
-./scratchpad.sh step "Define user requirements"
-
-./scratchpad.sh step "Choose auth method"
-
-./scratchpad.sh branch 2 "Research JWT approach"
-
-./scratchpad.sh branch 2 "Research OAuth2 approach"
-
-./scratchpad.sh revise 1 "Add rate limiting requirements"
-
-./scratchpad.sh status
-
-./scratchpad.sh finish
-
-```
-
-
-
-## Output Format
-
-
-
-Creates a structured markdown file with:
-
-- `[N]` – Main sequential steps
-
-- `[N.x]` – Branched alternatives under step N
-
-- `[N~x]` – Revisions to step N
-
-
-
-Archived files are timestamped and stored in `memory_bank/done_task/`.
+- **High-impact approach** - Focus on what actually helps agents (80/20 rule)
 
 
 
 ## Quick Start
 
-
-
 ```bash
-
-# Set up in a new directory
-
-printf 'Setup: creating llm-tooling/ and downloading tools...
-'
-
-mkdir -p llm-tooling && cd llm-tooling
-
-wget -q https://raw.githubusercontent.com/larock22/llm-agent-tools/main/{scratchpad.sh,architect.sh,researcher.sh,agent_tools_prompt.xml}
-
+# 1. Download tools and prompt
+mkdir -p llm-agent-tools && cd llm-agent-tools
+wget -q https://raw.githubusercontent.com/larock22/llm-agent-tools/main/{scratchpad-multi.sh,knowledge.sh,codemap.sh,context.sh,setup-multi-agent.sh,researcher.sh,agent_tools_prompt.xml}
 chmod +x *.sh
 
+# 2. Install jq (if not already installed)
+which jq || sudo apt-get install -y jq  # Debian/Ubuntu
+which jq || brew install jq              # macOS
 
+# 3. Initialize and start
+./setup-multi-agent.sh
+./scratchpad-multi.sh --agent myagent start "My first task"
+```
 
-# For researcher.sh, set your OpenRouter API key
-
+For researcher.sh, set your OpenRouter API key:
+```bash
 export OPENROUTER_API_KEY="sk-or-v1-your-key-here"
+# Or: ./researcher.sh set-key "sk-or-v1-your-key-here"
+```
 
-# Or use: ./researcher.sh set-key "sk-or-v1-your-key-here"
+---
+
+# Individual Tool Documentation
+
+## 1. Scratchpad-multi.sh (Multi-Agent Task Tracking)
+
+Enhanced version of scratchpad with agent isolation, task handoffs, and concurrent support.
+
+### Commands
+
+All commands support `--agent <name>` for agent-specific operation:
+
+- `start <task-title>` – Create new scratchpad with task header
+- `step <text>|-` – Add next numbered step (auto-increments)
+- `revise <N> <text>|-` – Add revision to step N (marked as [N~1], [N~2], etc.)
+- `branch <N> <text>|-` – Create sub-step under step N (marked as [N.1], [N.2], etc.)
+- `append <text>|-` – Raw text append without formatting
+- `status` – Show current progress and step counts
+- `finish [task-title]` – Archive completed scratchpad with timestamp
+- `handoff <to-agent> <message>` – Transfer task to another agent
+- `agents` – List all active agents and their current tasks
 
 
 
-# Start using the tools!
+### Usage Example
 
-./scratchpad.sh start "My first task"
+```bash
+# Agent 1: Researcher
+./scratchpad-multi.sh --agent researcher start "Research authentication options"
+./scratchpad-multi.sh --agent researcher step "Found JWT vs OAuth2 comparison"
+./scratchpad-multi.sh --agent researcher step "OAuth2 recommended for our use case"
+./scratchpad-multi.sh --agent researcher handoff implementer "Research complete, please implement OAuth2"
 
-./architect.sh init
-
-./researcher.sh ask "What's new in AI today?"
-
+# Agent 2: Implementer
+./scratchpad-multi.sh --agent implementer status
+./scratchpad-multi.sh --agent implementer step "Implementing OAuth2 flow"
+./scratchpad-multi.sh --agent implementer finish
 ```
 
 
 
-## Installation
+---
 
+## 2. Knowledge.sh (Agent Memory System)
 
+Lightweight knowledge base for storing discoveries, sharing between agents, and building collective intelligence.
 
-### Option 1: wget (Recommended)
+### Commands
+
+All commands support `--agent <name>` for agent-specific operation:
+
+- `store <key> <value>` – Store a fact or discovery
+- `get <key>` – Retrieve value for a specific key
+- `search <pattern>` – Search keys matching pattern (regex)
+- `list [--shared]` – List all knowledge (add --shared for shared pool)
+- `tag <key> <tags...>` – Add tags to a knowledge entry
+- `share <key>` – Copy private knowledge to shared pool
+- `sync` – Pull relevant shared knowledge based on tags
+- `export [file]` – Export knowledge to markdown
+
+### Usage Example
 
 ```bash
+# Researcher stores discoveries
+./knowledge.sh --agent researcher store "api.endpoint" "https://api.example.com/v2"
+./knowledge.sh --agent researcher store "api.auth" "Bearer token with 24h expiry"
+./knowledge.sh --agent researcher tag "api.endpoint" api production
+./knowledge.sh --agent researcher share "api.endpoint"
 
-# Download all files into llm-tooling directory
-
-mkdir -p llm-tooling && cd llm-tooling
-
-wget -q https://raw.githubusercontent.com/larock22/llm-agent-tools/main/{scratchpad.sh,architect.sh,researcher.sh,agent_tools_prompt.xml}
-
-chmod +x *.sh
-
+# Developer retrieves shared knowledge
+./knowledge.sh --agent developer sync
+./knowledge.sh --agent developer get "api.endpoint"
 ```
 
 
 
-### Option 2: Clone Repository
+
+# Multi-Agent Workflow
+
+## Directory Structure
+
+All agent work is organized within `memory-bank/`:
+
+```
+memory-bank/
+├── agents/<name>/          # Agent-specific workspaces
+│   ├── scratchpad.md      # Current task
+│   └── knowledge.json     # Private knowledge
+├── shared/                # Shared resources
+│   ├── done_tasks/       # Completed tasks
+│   ├── handoffs/         # Task transfers
+│   └── knowledge_base.json
+├── codemap/              # Code intelligence
+│   ├── metadata/         # File labels & deps
+│   ├── cheatsheets/      # Component docs
+│   └── debug_history/    # Bug→fix patterns
+└── context/              # Active debugging
+```
+
+## Common Patterns
+
+### Research → Implementation
+```bash
+# Researcher discovers information
+./scratchpad-multi.sh --agent researcher start "Research API"
+./knowledge.sh --agent researcher store "api.url" "https://..."
+./knowledge.sh --agent researcher share "api.url"
+./scratchpad-multi.sh --agent researcher handoff coder "Ready to implement"
+
+# Coder uses research
+./knowledge.sh --agent coder sync
+./knowledge.sh --agent coder get "api.url"
+```
+
+### Parallel Development
+Multiple agents working on different aspects:
+- Frontend agent handles UI
+- Backend agent handles API
+- Tester agent writes tests
+- All share discoveries via knowledge.sh
+
+
+
+---
+
+
+
+## 3. Codemap.sh (Lightweight Code Intelligence)
+
+High-impact, low-overhead code intelligence focused on what actually helps agents: module metadata, component cheatsheets, and debug patterns.
+
+
+
+### Core Features
+
+1. **Module Metadata** (`metadata/modules.json`)
+   - Auto-detects file types and dependencies
+   - Labels files as impl/interface/test/config
+   - Instant roadmap for agents
+
+2. **Component Cheatsheets** (`cheatsheets/`)
+   - Public APIs and common patterns
+   - Gotchas and edge cases
+   - Prevents hallucinations and API misuse
+
+3. **Debug History** (`debug_history/`)
+   - Bug→fix patterns for reuse
+   - Prevents repeating old mistakes
+   - Builds institutional memory
+
+
+
+### Commands
+
+- `init` – Initialize codemap structure
+- `map` – Auto-scan project (detects types and dependencies)
+- `label <file> <type> <desc>` – Label file type (impl/interface/test/config)
+- `deps <file> <deps...>` – Record file dependencies
+- `cheat <component>` – Create/edit component cheatsheet
+- `debug <bug> <fix>` – Log a bug→fix pattern
+- `search <term>` – Search across all codemap data
+- `summary` – Show high-level project overview
+
+
+
+### Usage Example
 
 ```bash
+# Initialize and scan
+./codemap.sh init
+./codemap.sh map
 
-git clone https://github.com/larock22/llm-agent-tools.git
+# Document as you learn
+./codemap.sh label "server.js" entry "Express server entry point"
+./codemap.sh deps "server.js" "express" "auth" "database"
 
-cd llm-agent-tools
+# Create cheatsheets for complex parts
+./codemap.sh cheat auth    # Opens editor
 
-chmod +x *.sh
+# Log issues as you fix them
+./codemap.sh debug "JWT tokens not expiring" "Added expiry check in auth.js:42"
 
+# Search everything
+./codemap.sh search "auth"
+```
+
+
+
+---
+
+## 4. Context.sh (Debugging Helper)
+
+Gather and store context when debugging issues. Captures command outputs, file contents, and notes in a structured format.
+
+### Commands
+
+- `start <issue-title>` – Create a new context file
+- `add "<command>"` – Run command and append output
+- `add-file <file_path>...` – Append file contents
+- `add-text <text>|-` – Append raw text or stdin
+- `finish [issue-title]` – Archive context file
+
+### Usage Example
+
+```bash
+./context.sh start "Database connection timeout"
+./context.sh add "ps aux | grep postgres"
+./context.sh add-file "config/database.yml"
+./context.sh add-text "Happens only under load"
+./context.sh finish
 ```
 
 
@@ -213,209 +276,20 @@ chmod +x *.sh
 
 
 
-# Architect.sh
-
-
-
-A documentation management tool for maintaining up-to-date architecture documentation and codebase maps. Helps LLM agents quickly understand project structure and locate relevant information.
-
-
-
-## Core Features
-
-
-
-### Repository Map (`repo_map.md`)
-
-Maintains a comprehensive file listing with brief descriptions:
-
-```
-
-src/
-
-├── index.js          # Main entry point, Express server setup
-
-├── auth/
-
-│   ├── jwt.js        # JWT token generation and validation
-
-│   └── middleware.js # Auth middleware for protected routes
-
-├── models/
-
-│   ├── user.js       # User schema and methods
-
-│   └── product.js    # Product model with inventory tracking
-
-└── utils/
-
-    └── logger.js     # Winston logger configuration
-
-```
-
-
-
-## Commands
-
-
-
-- `architect init` – Initialize architecture docs in current project
-
-- `architect map [--update]` – Generate/update repository map with file descriptions
-
-- `architect describe <file> <description>` – Add/update description for a specific file
-
-- `architect add-module <name> <description>` – Document a new architectural module/component
-
-- `architect add-decision <title>` – Record architectural decision (ADR format)
-
-- `architect add-flow <name>` – Document a process/data flow
-
-- `architect link <file> <module>` – Link files to architectural modules
-
-- `architect search <term>` – Search across all architecture docs
-
-- `architect status` – Show documentation coverage and outdated entries
-
-- `architect export` – Generate full architecture document
-
-
-
-## Architecture Documents Structure
-
-
-
-```
-
-architecture/
-
-├── repo_map.md           # File-by-file codebase overview
-
-├── modules/              # High-level component descriptions
-
-│   ├── auth.md          
-
-│   ├── api.md           
-
-│   └── database.md      
-
-├── decisions/            # Architecture Decision Records (ADRs)
-
-│   ├── 001-auth-jwt.md  
-
-│   └── 002-postgres.md  
-
-├── flows/                # Process and data flow diagrams
-
-│   ├── user-login.md    
-
-│   └── order-process.md 
-
-└── dependencies.md       # External dependencies and rationale
-
-```
-
-
-
-## Usage Examples
-
-
-
-```bash
-
-# Initialize in a new project
-
-./architect.sh init
-
-
-
-# Generate initial repo map
-
-./architect.sh map
-
-
-
-# Add descriptions to key files
-
-./architect.sh describe "src/auth/jwt.js" "Handles JWT creation, verification, and refresh tokens"
-
-./architect.sh describe "src/models/user.js" "User model with bcrypt password hashing and role management"
-
-
-
-# Document architectural modules
-
-./architect.sh add-module "Authentication" "JWT-based auth system with refresh tokens and role-based access"
-
-./architect.sh link "src/auth/*" "Authentication"
-
-
-
-# Record architectural decisions
-
-./architect.sh add-decision "Why JWT over sessions"
-
-
-
-# Update repo map after changes
-
-./architect.sh map --update
-
-
-
-# Check documentation status
-
-./architect.sh status
-
-```
-
-
-
-## Smart Features
-
-
-
-- **Auto-detection**: Recognizes common patterns (routes, models, controllers) and suggests descriptions
-
-- **Git integration**: Tracks when files change to flag outdated documentation
-
-- **Import detection**: Analyzes imports to understand file relationships
-
-- **Coverage reporting**: Shows which files lack documentation
-
-- **Quick search**: Fast lookup across all architecture docs
-
-- **LLM-optimized output**: Formats documentation for efficient context consumption
-
-
-
----
-
-
-
-# Researcher.sh
-
-
+## 5. Researcher.sh (Online Research)
 
 An OpenRouter API client for online research and multimodal queries. Enables LLM agents to perform web searches, analyze images, and conduct research using models with internet access.
 
 
 
-## Commands
+### Commands
 
-
-
-- `researcher ask <prompt>` – Quick question with online search capability
-
-- `researcher research <topic>` – Deep research on any topic with comprehensive results
-
-- `researcher analyze-image <url> <prompt>` – Analyze images with natural language queries
-
-- `researcher chat` – Interactive chat mode for extended conversations
-
-- `researcher models` – List available models (online & vision-capable)
-
-- `researcher set-key <api-key>` – Configure OpenRouter API key
+- `ask <prompt>` – Quick question with online search capability
+- `research <topic>` – Deep research on any topic with comprehensive results
+- `analyze-image <url> <prompt>` – Analyze images with natural language queries
+- `chat` – Interactive chat mode for extended conversations
+- `models` – List available models (online & vision-capable)
+- `set-key <api-key>` – Configure OpenRouter API key
 
 
 
@@ -519,62 +393,49 @@ export RESEARCHER_MODEL="perplexity/sonar-medium-online"
 
 ---
 
+# System Requirements
 
+- **OS**: Linux or macOS
+- **Bash**: Version 4.0 or higher
+- **jq**: Required for knowledge.sh and codemap.sh
+- **Optional**: OpenRouter API key for researcher.sh
 
-## LLM Agent Integration
+# Getting Started
 
+```bash
+# 1. Download tools
+mkdir -p llm-agent-tools && cd llm-agent-tools
+wget -q https://raw.githubusercontent.com/larock22/llm-agent-tools/main/{scratchpad-multi.sh,knowledge.sh,codemap.sh,context.sh,setup-multi-agent.sh,researcher.sh}
+chmod +x *.sh
 
+# 2. Install jq (if needed)
+sudo apt-get install jq  # Debian/Ubuntu
+brew install jq          # macOS
 
-An XML system prompt is included (`agent_tools_prompt.xml`) that instructs LLM agents on optimal usage of all three tools. This prompt is designed following the 26 principles from the ATLAS research paper ["Principled Instructions Are All You Need for Questioning LLaMA-1/2, GPT-3.5/4"](https://arxiv.org/html/2312.16171v1).
+# 3. Initialize structure
+./setup-multi-agent.sh
 
-
-
-Key principles applied:
-
-- Direct communication without unnecessary politeness (Principle #1)
-
-- Expert audience specification (Principle #2)
-
-- Affirmative directives and role assignment (Principles #4, #16)
-
-- Structured formatting with delimiters (Principles #8, #17)
-
-- Few-shot examples (Principle #7)
-
-- Step-by-step thinking (Principle #12)
-
-- Task requirements and penalties (Principles #9, #10)
-
-- Tip incentive for quality output (Principle #6)
-
-
-
-### Integration Example
-
-
-
-```xml
-
-<system_prompt>
-
-  <!-- Load the agent tools prompt -->
-
-  <include file="agent_tools_prompt.xml"/>
-
-</system_prompt>
-
+# 4. Start using!
+./scratchpad-multi.sh --agent myagent start "My task"
+./codemap.sh init && ./codemap.sh map
 ```
 
+# Best Practices
 
+1. **Agent Naming**: Use descriptive names (researcher, coder, tester)
+2. **Knowledge Sharing**: Share discoveries immediately after validation
+3. **Task Handoffs**: Include clear context in handoff messages
+4. **Code Documentation**: Use codemap.sh as you learn the codebase
+5. **Debug Logging**: Record bug→fix patterns immediately
 
-The prompt ensures agents:
+# Contributing
 
-1. Track complex tasks with scratchpad.sh
+Contributions welcome! Please:
+- Keep tools lightweight and bash-based
+- Follow the 80/20 principle (high impact, low overhead)
+- Test with multiple concurrent agents
+- Update documentation with examples
 
-2. Document architecture with architect.sh
+# License
 
-3. Research current information with researcher.sh
-
-4. Follow established workflow patterns
-
-5. Maintain comprehensive documentation
+MIT License - See LICENSE file for details

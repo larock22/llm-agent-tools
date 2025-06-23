@@ -14,8 +14,8 @@
 # ──────────────────────────────────────────────────────────────
 set -euo pipefail
 
-SCRATCH="$BANK_DIR/scratchpad.md"  # working file (always in memory-bank)
 BANK_DIR="memory-bank"
+SCRATCH="$BANK_DIR/scratchpad.md"  # working file (always in memory-bank)
 
 # ──────────────────────────────────────────────────────────────
 usage() {

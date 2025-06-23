@@ -1,0 +1,32 @@
+{
+  "scratchpad.sh": {
+    "type": "impl",
+    "description": "Original single-agent task tracking tool",
+    "deps": []
+  },
+  "scratchpad-multi.sh": {
+    "type": "impl",
+    "description": "Multi-agent enhanced task tracking with handoffs",
+    "deps": []
+  },
+  "knowledge.sh": {
+    "type": "impl",
+    "description": "Agent knowledge base with private/shared storage",
+    "deps": ["jq"]
+  },
+  "codemap.sh": {
+    "type": "impl",
+    "description": "Lightweight code intelligence replacing architect.sh",
+    "deps": ["jq"]
+  },
+  "context.sh": {
+    "type": "impl",
+    "description": "Context gathering tool for debugging",
+    "deps": []
+  },
+  "setup-multi-agent.sh": {
+    "type": "config",
+    "description": "Initialize multi-agent directory structure",
+    "deps": []
+  }
+}

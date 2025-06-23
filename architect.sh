@@ -17,7 +17,8 @@
 # ──────────────────────────────────────────────────────────────
 set -euo pipefail
 
-ARCH_DIR="architecture"
+BANK_DIR="memory-bank"
+ARCH_DIR="$BANK_DIR/architecture"
 REPO_MAP="$ARCH_DIR/repo_map.md"
 MODULES_DIR="$ARCH_DIR/modules"
 DECISIONS_DIR="$ARCH_DIR/decisions"

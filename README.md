@@ -103,28 +103,39 @@ A suite of command-line tools to streamline and enhance LLM agent workflows. Thi
 
 Get started in 30 seconds:
 
-1. **Clone and Setup**:
+1. **One-Line Install**:
 
    ```bash
-   git clone https://github.com/your-repo/llm-agent-tools.git
-   cd llm-agent-tools
-   ./tools/core/setup-multi-agent.sh
+   curl -s https://raw.githubusercontent.com/larock22/llm-agent-tools/main/install.sh | bash
    ```
 
-2. **Choose Your Workflow**:
+   Or manual install:
+   ```bash
+   wget https://raw.githubusercontent.com/larock22/llm-agent-tools/main/install.sh
+   chmod +x install.sh
+   ./install.sh
+   ```
+
+2. **Initialize Workspace**:
+
+   ```bash
+   ./setup-multi-agent.sh
+   ```
+
+3. **Choose Your Workflow**:
 
    ```bash
    # Research a topic
-   ./tools/core/researcher.sh "machine learning best practices"
+   ./researcher.sh "machine learning best practices"
 
    # Plan a project 
-   ./tools/core/architect.sh
+   ./architect.sh
 
    # Map existing code
-   ./tools/core/codemap.sh map
+   ./codemap.sh map
 
    # Start collaborative work
-   ./tools/core/scratchpad-multi.sh --agent myagent start "Build API"
+   ./scratchpad-multi.sh --agent myagent start "Build API"
    ```
 
 ## Tool Overview
@@ -161,24 +172,24 @@ llm-agent-tools/
 ### Solo Development
 
 ```bash
-./tools/core/setup-multi-agent.sh    # Initialize
-./tools/core/researcher.sh "topic"   # Research
-./tools/core/architect.sh            # Plan
-./tools/core/codemap.sh map          # Map code
-./tools/core/scratchpad-multi.sh     # Execute
+./setup-multi-agent.sh       # Initialize
+./researcher.sh "topic"      # Research
+./architect.sh               # Plan
+./codemap.sh map            # Map code
+./scratchpad-multi.sh       # Execute
 ```
 
 ### Multi-Agent Team
 
 ```bash
 # Agent A: Research
-./tools/core/researcher.sh "requirements" --agent researcher
+./researcher.sh "requirements" --agent researcher
 
 # Agent B: Architecture  
-./tools/core/architect.sh --agent architect
+./architect.sh --agent architect
 
 # Agent C: Implementation
-./tools/core/scratchpad-multi.sh --agent developer start "Build feature"
+./scratchpad-multi.sh --agent developer start "Build feature"
 ```
 
 ## Documentation

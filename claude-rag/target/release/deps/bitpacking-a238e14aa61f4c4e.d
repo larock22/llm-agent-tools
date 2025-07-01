@@ -1,0 +1,11 @@
+/home/tuna/llm-agent-tools/claude-rag/target/release/deps/libbitpacking-a238e14aa61f4c4e.rmeta: /home/tuna/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitpacking-0.9.2/src/lib.rs /home/tuna/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitpacking-0.9.2/src/macros.rs /home/tuna/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitpacking-0.9.2/src/macros_simple.rs /home/tuna/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitpacking-0.9.2/src/bitpacker1x.rs /home/tuna/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitpacking-0.9.2/src/bitpacker4x.rs
+
+/home/tuna/llm-agent-tools/claude-rag/target/release/deps/libbitpacking-a238e14aa61f4c4e.rlib: /home/tuna/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitpacking-0.9.2/src/lib.rs /home/tuna/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitpacking-0.9.2/src/macros.rs /home/tuna/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitpacking-0.9.2/src/macros_simple.rs /home/tuna/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitpacking-0.9.2/src/bitpacker1x.rs /home/tuna/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitpacking-0.9.2/src/bitpacker4x.rs
+
+/home/tuna/llm-agent-tools/claude-rag/target/release/deps/bitpacking-a238e14aa61f4c4e.d: /home/tuna/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitpacking-0.9.2/src/lib.rs /home/tuna/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitpacking-0.9.2/src/macros.rs /home/tuna/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitpacking-0.9.2/src/macros_simple.rs /home/tuna/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitpacking-0.9.2/src/bitpacker1x.rs /home/tuna/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitpacking-0.9.2/src/bitpacker4x.rs
+
+/home/tuna/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitpacking-0.9.2/src/lib.rs:
+/home/tuna/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitpacking-0.9.2/src/macros.rs:
+/home/tuna/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitpacking-0.9.2/src/macros_simple.rs:
+/home/tuna/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitpacking-0.9.2/src/bitpacker1x.rs:
+/home/tuna/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/bitpacking-0.9.2/src/bitpacker4x.rs:

@@ -100,25 +100,25 @@ flowchart TD
     Refs --> End
     Results --> End
     
-    style Start fill:#e8f5e9,stroke:#4caf50,stroke-width:2px
-    style Choice fill:#fff9c4,stroke:#f9a825,stroke-width:2px
-    style Claude fill:#e1bee7,stroke:#8e24aa,stroke-width:3px
-    style Knowledge fill:#e0f2f1,stroke:#00897b,stroke-width:2px
-    style End fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
-    style RAG fill:#fce4ec,stroke:#c2185b,stroke-width:2px
-    style Tantivy fill:#ffe0b2,stroke:#f57c00,stroke-width:2px
+    style Start fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    style Choice fill:#ffffff,stroke:#1976d2,stroke-width:2px
+    style Claude fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
+    style Knowledge fill:#ffffff,stroke:#1976d2,stroke-width:2px
+    style End fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    style RAG fill:#ffffff,stroke:#1976d2,stroke-width:2px
+    style Tantivy fill:#ffffff,stroke:#1976d2,stroke-width:2px
     style Setup fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
     style Scratch fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
     style Search fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
     style Index fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-    style Work fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
-    style Complete fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
-    style Filed fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
-    style Debug fill:#e8f5e9,stroke:#43a047,stroke-width:2px
-    style Patterns fill:#e8f5e9,stroke:#43a047,stroke-width:2px
-    style QA fill:#e8f5e9,stroke:#43a047,stroke-width:2px
-    style Refs fill:#e8f5e9,stroke:#43a047,stroke-width:2px
-    style Results fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    style Work fill:#ffffff,stroke:#1976d2,stroke-width:2px
+    style Complete fill:#ffffff,stroke:#1976d2,stroke-width:2px
+    style Filed fill:#ffffff,stroke:#1976d2,stroke-width:2px
+    style Debug fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Patterns fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style QA fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Refs fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Results fill:#ffffff,stroke:#1976d2,stroke-width:2px
 ```
 
 ## Tools Overview

@@ -100,25 +100,25 @@ flowchart TD
     Refs --> End
     Results --> End
     
-    style Start fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
-    style Choice fill:#ffffff,stroke:#1976d2,stroke-width:2px
+    style Start fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
+    style Choice fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
     style Claude fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
-    style Knowledge fill:#ffffff,stroke:#1976d2,stroke-width:2px
-    style End fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
-    style RAG fill:#ffffff,stroke:#1976d2,stroke-width:2px
-    style Tantivy fill:#ffffff,stroke:#1976d2,stroke-width:2px
-    style Setup fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-    style Scratch fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-    style Search fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-    style Index fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-    style Work fill:#ffffff,stroke:#1976d2,stroke-width:2px
-    style Complete fill:#ffffff,stroke:#1976d2,stroke-width:2px
-    style Filed fill:#ffffff,stroke:#1976d2,stroke-width:2px
-    style Debug fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-    style Patterns fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-    style QA fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-    style Refs fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-    style Results fill:#ffffff,stroke:#1976d2,stroke-width:2px
+    style Knowledge fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
+    style End fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
+    style RAG fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
+    style Tantivy fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
+    style Setup fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
+    style Scratch fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
+    style Search fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
+    style Index fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
+    style Work fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
+    style Complete fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
+    style Filed fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
+    style Debug fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
+    style Patterns fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
+    style QA fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
+    style Refs fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
+    style Results fill:#1976d2,stroke:#0d47a1,stroke-width:3px,color:#fff
 ```
 
 ## Tools Overview
@@ -218,20 +218,29 @@ echo "Filing to .claude/debug_history/api_timeout_fix.md"
 
 ## Installation
 
+Add these tools to your existing project:
+
 ```bash
-# Clone and setup
-git clone <repository>
-cd llm-agent-tools
+# Download the bash scripts
+wget https://raw.githubusercontent.com/YOUR_REPO/llm-agent-tools/main/setup-claude-optimization.sh
+wget https://raw.githubusercontent.com/YOUR_REPO/llm-agent-tools/main/scratchpad.sh
+wget https://raw.githubusercontent.com/YOUR_REPO/llm-agent-tools/main/claude-rag.sh
 
-# Make scripts executable
-chmod +x *.sh
+# Download the Rust RAG tool
+wget https://github.com/YOUR_REPO/llm-agent-tools/releases/download/latest/claude-rag-linux-x64
+mv claude-rag-linux-x64 claude-rag
 
-# Run initial setup
+# Make everything executable
+chmod +x *.sh claude-rag
+
+# Initialize the .claude directory structure
 ./setup-claude-optimization.sh
 
-# Build RAG system (requires Rust)
+# Build the search index
 ./claude-rag.sh build
 ```
+
+That's it! The tools are now part of your project.
 
 ## Best Practices
 

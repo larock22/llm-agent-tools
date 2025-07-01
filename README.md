@@ -243,8 +243,8 @@ echo "Filing to .claude/debug_history/api_timeout_fix.md"
 ## Requirements
 
 - Bash shell
-- Rust/Cargo (for RAG system)
 - Unix-like environment
+- Rust/Cargo (optional, for search features)
 
 ## Installation
 
@@ -275,6 +275,77 @@ chmod +x *.sh
 ```
 
 That's it! The tools are now part of your project.
+
+## Setting Up Rust Tools (Optional)
+
+The search features require Rust. Here's how to set it up:
+
+### 1. Install Rust
+
+```bash
+# Install Rust (if you don't have it)
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Follow the prompts, then reload your shell
+source $HOME/.cargo/env
+
+# Verify installation
+rustc --version
+cargo --version
+```
+
+### 2. Build the Search Tools
+
+After installing the bash scripts with the one-liner above:
+
+```bash
+# Option A: Use claude-rag.sh (easiest)
+# It will automatically build the tools on first use
+./claude-rag.sh build
+
+# Option B: Build manually
+git clone https://github.com/alchemiststudiosDOTai/llm-agent-tools.git
+cd llm-agent-tools/claude-rag
+cargo build --release
+cp target/release/build_index target/release/retrieve ../../
+cd ../../
+rm -rf llm-agent-tools  # Clean up
+```
+
+### 3. Using the Search Tools
+
+```bash
+# Build/rebuild the search index
+./claude-rag.sh build
+
+# Search your knowledge base
+./claude-rag.sh query "error handling"
+./claude-rag.sh query "debug" --category debug_history
+
+# Check index statistics
+./claude-rag.sh stats
+```
+
+### Troubleshooting Rust Installation
+
+If you encounter issues:
+
+1. **Linux/WSL**: You may need build tools
+   ```bash
+   sudo apt update
+   sudo apt install build-essential
+   ```
+
+2. **macOS**: You may need Xcode command line tools
+   ```bash
+   xcode-select --install
+   ```
+
+3. **Behind a proxy**: Set proxy environment variables before installing
+   ```bash
+   export https_proxy=http://your-proxy:port
+   export http_proxy=http://your-proxy:port
+   ```
 
 ## Best Practices
 

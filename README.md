@@ -221,7 +221,7 @@ echo "Filing to .claude/debug_history/api_timeout_fix.md"
 ### Quick Install (One-liner)
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/master/install.sh | bash
 ```
 
 ### Manual Install
@@ -230,9 +230,9 @@ Add these tools to your existing project:
 
 ```bash
 # Download the bash scripts
-wget https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/main/setup-claude-optimization.sh
-wget https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/main/scratchpad.sh
-wget https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/main/claude-rag.sh
+wget https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/master/setup-claude-optimization.sh
+wget https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/master/scratchpad.sh
+wget https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/master/claude-rag.sh
 
 # Make everything executable
 chmod +x *.sh

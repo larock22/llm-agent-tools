@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # LLM Agent Tools - One-liner installer
-# Usage: curl -sSL https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/main/install.sh | bash
+# Usage: curl -sSL https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/master/install.sh | bash
 
 set -e
 
@@ -23,7 +23,7 @@ echo "Downloading tools..."
 # Download bash scripts with error handling
 for script in setup-claude-optimization.sh scratchpad.sh claude-rag.sh; do
     echo "  - Downloading $script..."
-    if $DOWNLOAD_CMD "$script" "https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/main/$script"; then
+    if $DOWNLOAD_CMD "$script" "https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/master/$script"; then
         chmod +x "$script"
     else
         echo "Error: Failed to download $script"
@@ -41,9 +41,9 @@ if command -v cargo &> /dev/null; then
     
     # Download Rust source files
     echo "  - Downloading source files..."
-    $DOWNLOAD_CMD "Cargo.toml" "https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/main/claude-rag/Cargo.toml"
+    $DOWNLOAD_CMD "Cargo.toml" "https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/master/claude-rag/Cargo.toml"
     mkdir -p src
-    $DOWNLOAD_CMD "src/main.rs" "https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/main/claude-rag/src/main.rs"
+    $DOWNLOAD_CMD "src/main.rs" "https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/master/claude-rag/src/main.rs"
     
     # Build the tool
     echo "  - Building claude-rag..."

@@ -218,25 +218,29 @@ echo "Filing to .claude/debug_history/api_timeout_fix.md"
 
 ## Installation
 
+### Quick Install (One-liner)
+
+```bash
+curl -sSL https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/main/install.sh | bash
+```
+
+### Manual Install
+
 Add these tools to your existing project:
 
 ```bash
 # Download the bash scripts
-wget https://raw.githubusercontent.com/YOUR_REPO/llm-agent-tools/main/setup-claude-optimization.sh
-wget https://raw.githubusercontent.com/YOUR_REPO/llm-agent-tools/main/scratchpad.sh
-wget https://raw.githubusercontent.com/YOUR_REPO/llm-agent-tools/main/claude-rag.sh
-
-# Download the Rust RAG tool
-wget https://github.com/YOUR_REPO/llm-agent-tools/releases/download/latest/claude-rag-linux-x64
-mv claude-rag-linux-x64 claude-rag
+wget https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/main/setup-claude-optimization.sh
+wget https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/main/scratchpad.sh
+wget https://raw.githubusercontent.com/alchemiststudiosDOTai/llm-agent-tools/main/claude-rag.sh
 
 # Make everything executable
-chmod +x *.sh claude-rag
+chmod +x *.sh
 
 # Initialize the .claude directory structure
 ./setup-claude-optimization.sh
 
-# Build the search index
+# Build the search index (requires Rust)
 ./claude-rag.sh build
 ```
 

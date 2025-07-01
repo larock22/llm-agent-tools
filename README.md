@@ -2,6 +2,125 @@
 
 A comprehensive toolkit for AI agents to manage knowledge, take notes, and retrieve information efficiently.
 
+## System Architecture
+
+```mermaid
+flowchart TD
+    Start([User/Agent Starts]) --> Choice{What do you need?}
+    
+    Choice -->|Initial Setup| Setup["`**SETUP PHASE**
+    ./setup-claude-optimization.sh
+    Creates .claude structure`"]
+    
+    Choice -->|Take Notes| Scratch["`**WORKING NOTES**  
+    ./scratchpad.sh new
+    Create temporary workspace`"]
+    
+    Choice -->|Search Knowledge| Search["`**SEARCH PHASE**
+    ./claude-rag.sh query
+    Fast BM25 retrieval`"]
+    
+    Choice -->|Build Index| Index["`**INDEX PHASE**
+    ./claude-rag.sh build
+    Index all knowledge`"]
+    
+    Setup --> Claude[("`**CLAUDE LAYER**
+    .claude/
+    ├── metadata/
+    ├── code_index/
+    ├── debug_history/
+    ├── patterns/
+    ├── cheatsheets/
+    ├── qa/
+    ├── delta/
+    ├── anchors/
+    └── scratchpad/`")]
+    
+    Scratch --> Work["`**SCRATCHPAD WORKFLOW**
+    1. new - Create workspace
+    2. append - Add notes
+    3. view/edit - Review
+    4. complete - Prepare filing`"]
+    
+    Work --> Complete["`**COMPLETION PHASE**
+    Agent reviews content
+    Determines category
+    Files to .claude/[dir]`"]
+    
+    Complete --> Filed["`**FILE & INDEX**
+    ./scratchpad.sh filed
+    ./claude-rag.sh build`"]
+    
+    Search --> RAG["`**RAG FEATURES**
+    - BM25 ranking
+    - Category filtering
+    - JSON output
+    - <50ms queries`"]
+    
+    Index --> Tantivy["`**TANTIVY ENGINE**
+    - Rust-based indexing
+    - Document chunking
+    - Metadata tracking
+    - Fast retrieval`"]
+    
+    Claude --> Knowledge{"`**KNOWLEDGE BASE**
+    Organized by type`"}
+    
+    Knowledge -->|Debug Sessions| Debug["`**debug_history/**
+    - Error fixes
+    - Troubleshooting
+    - Solution pairs`"]
+    
+    Knowledge -->|Patterns| Patterns["`**patterns/**
+    - Implementation patterns
+    - Best practices
+    - Reusable solutions`"]
+    
+    Knowledge -->|Q&A| QA["`**qa/**
+    - Answered questions
+    - Problem solutions
+    - Explanations`"]
+    
+    Knowledge -->|References| Refs["`**cheatsheets/**
+    - Quick references
+    - Common commands
+    - Shortcuts`"]
+    
+    Filed --> Claude
+    RAG --> Results["`**SEARCH RESULTS**
+    Relevant chunks
+    Scored by relevance
+    With context`"]
+    
+    Tantivy --> Claude
+    
+    Debug --> End([Knowledge Available])
+    Patterns --> End
+    QA --> End
+    Refs --> End
+    Results --> End
+    
+    style Start fill:#e8f5e9,stroke:#4caf50,stroke-width:2px
+    style Choice fill:#fff9c4,stroke:#f9a825,stroke-width:2px
+    style Claude fill:#e1bee7,stroke:#8e24aa,stroke-width:3px
+    style Knowledge fill:#e0f2f1,stroke:#00897b,stroke-width:2px
+    style End fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
+    style RAG fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    style Tantivy fill:#ffe0b2,stroke:#f57c00,stroke-width:2px
+    style Setup fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Scratch fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Search fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Index fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    style Work fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Complete fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Filed fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    style Debug fill:#e8f5e9,stroke:#43a047,stroke-width:2px
+    style Patterns fill:#e8f5e9,stroke:#43a047,stroke-width:2px
+    style QA fill:#e8f5e9,stroke:#43a047,stroke-width:2px
+    style Refs fill:#e8f5e9,stroke:#43a047,stroke-width:2px
+    style Results fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+```
+
 ## Tools Overview
 
 ### 1. **setup-claude-optimization.sh**

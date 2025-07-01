@@ -129,8 +129,38 @@ Creates the `.claude` directory structure for organized knowledge management.
 ### 2. **scratchpad.sh**
 Temporary note-taking system for AI agents during work sessions.
 
-### 3. **claude-rag.sh**
-Fast retrieval system using Rust/Tantivy for searching the knowledge base.
+### 3. **claude-rag.sh** (Requires Rust)
+Wrapper script for fast search using Rust/Tantivy. This script:
+- Automatically builds the Rust tools on first run
+- Provides simple commands for indexing and searching
+- Handles the complexity of the underlying Rust binaries
+
+**Note:** This requires Rust to be installed. Without Rust, you can still use scratchpad.sh and the .claude directory structure.
+
+#### Using claude-rag.sh:
+```bash
+# If you have Rust installed:
+./claude-rag.sh build     # Build/rebuild the search index
+./claude-rag.sh query "search term"    # Search your knowledge base
+./claude-rag.sh query "error" --category debug_history
+./claude-rag.sh stats     # Show index statistics
+```
+
+#### Alternative: Using the Rust tools directly
+If you prefer to use the Rust tools without the wrapper:
+```bash
+# Clone and build
+git clone https://github.com/alchemiststudiosDOTai/llm-agent-tools.git
+cd llm-agent-tools/claude-rag
+cargo build --release
+
+# Copy binaries to your project
+cp target/release/build_index target/release/retrieve /path/to/your/project/
+
+# Use directly
+./build_index              # Indexes .claude directory
+./retrieve "search term"   # Search for content
+```
 
 ## Quick Start
 

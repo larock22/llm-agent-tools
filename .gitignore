@@ -1,0 +1,38 @@
+# Rust build artifacts
+claude-rag/target/
+claude-rag/Cargo.lock
+
+# RAG index data
+claude-rag/data/
+
+# Scratchpad temporary files
+.claude/scratchpad/active/*
+.claude/scratchpad/archive/*
+!.claude/scratchpad/active/.gitkeep
+!.claude/scratchpad/archive/.gitkeep
+
+# Local settings
+.claude/settings.local.json
+
+# Log files
+.claude/scratchpad_log.txt
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Backup files
+*.bak
+*.backup
+
+# Temporary files
+*.tmp
+*.temp
